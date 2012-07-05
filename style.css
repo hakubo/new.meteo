@@ -1,0 +1,42 @@
+body {
+	background: #88AEC5
+}
+h1,h2,h3 {
+	text-align: center;
+	margin-bottom: 10px;
+}
+h2 {
+font-size: 14px;
+}
+h3 {
+font-size: 12px;
+}
+
+a {
+	text-decoration: none;
+	outline:none;
+}
+
+a:visited {
+	color: brown;
+}
+a:hover {
+	color: #c4c4c4;
+}
+a:active {
+	position: relative;
+	top: 2px;
+}
+select { 
+text-align: center;
+ margin: auto;
+}
+#wrapper {
+	text-align: center;
+	margin:auto;
+	width:50%;
+	height: 80%;
+	background:#D1E7F4;
+	border: 1px solid brown;
+	padding: 5px;
+}

@@ -1,0 +1,185 @@
+<html>
+<head><title>Opcje - new.meteo</title>
+<meta http-equiv=Content-Type content="text/html; charset=UTF-8" />
+<link rel=stylesheet type=text/css href=style.css />
+<script>
+
+// Saves options to localStorage.
+function save_options() {
+
+	var cityval,
+		select = document.getElementById("language"),
+		langval = select.children[select.selectedIndex].value,
+		select = document.getElementById("type"),
+		typeval = select.children[select.selectedIndex].value;
+
+	if (document.getElementById('radiocity').checked == true) {
+ 		select = document.getElementById("cityselect")
+		cityval = select.children[select.selectedIndex].value;
+		localStorage["row0u"] = cityval.match(/\d{2,3}/);
+		localStorage["col0u"] = cityval.match(/,(\d{2,3})/)[1];
+		localStorage["row2n"] = cityval.match(/;(\d{2,3})/)[1];
+		localStorage["col2n"] = cityval.match(/;\d{2,3},(\d{2,3})/)[1];
+		localStorage["city"] = select.children[select.selectedIndex].text;
+		localStorage["chosenBy"] = "city";
+	} else {
+		localStorage["row0u"] = document.getElementById("rowinput").value;
+		localStorage["col0u"] = document.getElementById("colinput").value;
+		localStorage["chosenBy"] = "coordinates";
+	}
+	
+
+  localStorage["lang"] = langval;
+  localStorage["type"] = typeval;
+	if(document.getElementById('legend').checked == true) {
+		localStorage["legend"] = '1';
+	} else {
+		localStorage["legend"] = '';
+	}
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+};
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+  var rowvalue = localStorage["row"],
+  colvalue = localStorage["col"],
+  langval = localStorage["lang"],
+  typeval = localStorage["type"],
+  chosenBy = localStorage["chosenBy"],
+  city = localStorage["city"],
+  legend = localStorage["legend"];
+if(!rowvalue || !colvalue) {
+	document.getElementById("rowinput").value = 400;
+	document.getElementById("colinput").value = 180;
+} else {
+	document.getElementById("rowinput").value = rowvalue;
+	document.getElementById("colinput").value = colvalue;
+}
+
+  var select = document.getElementById("language");
+  for (var i = 0; i < select.children.length; i++) {
+    var child = select.children[i];
+    if (child.value == langval) {
+      child.selected = "true";
+      break;
+    }
+  }
+
+  select = document.getElementById("type");
+  for (var i = 0; i < select.children.length; i++) {
+    var child = select.children[i];
+    if (child.value == typeval) {
+      child.selected = "true";
+      break;
+    }
+  }
+ 
+if(chosenBy == "city" || chosenBy === undefined) {
+document.getElementById('radiocity').checked = true;
+		document.getElementById('city').style.visibility = "visible";
+		document.getElementById('coordinates').style.visibility = "hidden";
+		document.getElementById('posdesc').innerHTML = 'Choose weather position by city name';
+
+  select = document.getElementById("cityselect");
+  for (var i = 0; i < select.children.length; i++) {
+    var child = select.children[i];
+    if (child.text == city) {
+      child.selected = "true";
+      break;
+    }
+  }
+	
+} else {
+document.getElementById('radiocoordinates').checked = true;
+		document.getElementById('city').style.visibility = "hidden";
+		document.getElementById('coordinates').style.visibility = "visible";
+		document.getElementById('posdesc').innerHTML = 'Choose weather position by coordinates'; 
+}
+
+if(legend == "true") {
+	document.getElementById('legend').checked = true;
+} else {
+	document.getElementById('legend').checked = false;
+}
+
+}
+
+function pos(radio) {
+ var val = radio.value;
+	if(val == "city") {
+		document.getElementById('city').style.visibility = "visible";
+		document.getElementById('coordinates').style.visibility = "hidden";
+		document.getElementById('posdesc').innerHTML = 'Choose weather position by city name';
+	} else {
+		document.getElementById('city').style.visibility = "hidden";
+		document.getElementById('coordinates').style.visibility = "visible";
+		document.getElementById('posdesc').innerHTML = 'Choose weather position by coordinates'; 
+	}
+
+}
+</script>
+</head>
+<body onload="restore_options()">
+
+	<div id="wrapper">
+	<h1>Options - <a href="http://new.meteo.pl/" target="_blank">new.meteo</a></h1>
+	<h2>Position:</h2>
+	<div id="posdesc">Choose weather position by city name</div>
+		<input id="radiocity" type="radio" name="position" value="city" checked onclick="pos(this)"> City </option>
+		<input id="radiocoordinates" type="radio" name="position" value="coordinates" onclick="pos(this)"> Coordinates</option><br>
+	<div id="coordinates">
+		<h3>Coordinates:</h3>
+		Row: <input id="rowinput">
+		Col: <input id="colinput">
+	</div>
+	<div id="city">
+		<h3>City:</h3>
+		<select name="citis" id="cityselect">
+			<option value="379,285;125,106">Białystok</option>
+			<option value="381,199;126,81">Bydgoszcz</option>
+			<option value="346,210;115,84">Gdańsk</option>
+			<option value="390,152;129,67">Gorzów Wlkp</option>
+			<option value="461,215;150,85">Katowice</option>
+			<option value="443,244;145,94">Kielce</option>
+			<option value="466,232;151,91">Kraków</option>
+			<option value="432,277;141,104">Lublin</option>
+			<option value="418,223;137,88">Łódź</option>
+			<option value="363,240;120,93">Olsztyn</option>
+			<option value="449,196;146,80">Opole</option>
+			<option value="400,180;132,75">Poznań</option>
+			<option value="465,269;151,101">Rzeszów</option>
+			<option value="370,142;123,63">Szczecin</option>
+			<option value="383,209;127,84">Toruń</option>
+			<option value="406,250;133,96">Warszawa</option>
+			<option value="436,181;143,75">Wrocław</option>
+			<option value="412,155;135,68">Zielona Góra</option>
+	</select>
+	</div>
+	<h2>Language:</h2>
+	<select name="language" id="language">
+		<option value="pl">Polski</option>
+		<option value="en">English</option>
+	</select>
+	<h2>Type:</h2>
+	<div id="modeldesc">UM - shorter, COAMPS - longer</div>
+	<select name="type" id="type">
+		<option value="0u">MODEL UM</option>
+		<option value="2n">MODEL COAMPS</option>
+	</select>
+	<h2>Legend:</h2>
+	<div id="legenddesc">Whether to display legend or not</div>
+	<input type="checkbox" name="legend" id="legend" />
+
+<br><br>
+	<button onclick="save_options()">Save</button>
+<div id="status"></div>
+</div>
+
+</body>
+</html>
