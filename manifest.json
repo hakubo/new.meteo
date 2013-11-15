@@ -1,18 +1,21 @@
 {
-   "browser_action": {
-      "default_icon": "128.png",
-      "default_title": "new.meteo",
-      "popup": "popup.html"
-   },
-   "description": "Weather from polish site new.meteo",
-   "icons": {
-      "128": "128.png",
-      "32": "32.png",
-      "48": "48.png",
-      "64": "64.png"
-   },
-   "name": "new.meteo",
-   "options_page": "options.html",
-   "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "0.1.7.1"
+	"name": "new.meteo",
+	"author": "Jakub Olek http://github.com/hakubo",
+	"browser_action": {
+		"default_icon": "128.png",
+		"default_title": "new.meteo",
+		"default_popup": "popup.html"
+	},
+	"description": "Weather from polish site new.meteo",
+	"icons": {
+		"32": "32.png",
+		"48": "48.png",
+		"64": "64.png",
+		"128": "128.png"
+	},
+
+	"options_page": "options.html",
+	"update_url": "http://clients2.google.com/service/update2/crx",
+	"version": "0.2",
+	"manifest_version": 2
 }

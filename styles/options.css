@@ -1,15 +1,18 @@
 body {
-	background: #88AEC5
+	background: rgb(33, 74, 162);
 }
-h1,h2,h3 {
+
+h1, h2, h3 {
 	text-align: center;
 	margin-bottom: 10px;
 }
+
 h2 {
-font-size: 14px;
+	font-size: 14px;
 }
+
 h3 {
-font-size: 12px;
+	font-size: 12px;
 }
 
 a {
@@ -20,23 +23,32 @@ a {
 a:visited {
 	color: brown;
 }
+
 a:hover {
 	color: #c4c4c4;
 }
+
 a:active {
 	position: relative;
 	top: 2px;
 }
+
 select { 
-text-align: center;
- margin: auto;
+	text-align: center;
+	margin: auto;
 }
+
+button {
+	display: block;
+	margin: 20px auto;
+}
+
 #wrapper {
 	text-align: center;
 	margin:auto;
 	width:50%;
 	height: 80%;
-	background:#D1E7F4;
-	border: 1px solid brown;
+	background: rgb(163, 184, 221);
+	border: 1px solid white;
 	padding: 5px;
 }

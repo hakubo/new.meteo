@@ -1,0 +1,25 @@
+#popup {
+	width: 555px;
+	height: 480px;
+}
+
+#popup.typ0u {
+	width: 390px;
+}
+
+#popup.typ0u.legend {
+	width: 600px;
+}
+
+#popup.typ2n {
+	width: 555px;
+}
+
+#popup.typ2n.legend {
+	width: 792px;
+}
+
+img {
+	width: auto;
+	height: 100%;
+}
